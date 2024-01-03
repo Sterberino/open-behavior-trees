@@ -1,0 +1,14 @@
+{
+    "name": "com.sterberino.open-behavior-trees",
+    "version": "1.0.0",
+    "displayName" : "Open Behavior Trees",
+    "description": "A collection of behavior tree scripts for developing game AI.",
+    "unity" : "2019.1",
+    "dependencies": {},
+    "keywords": ["behavior", "trees", "ai"],
+    "author" : {
+        "name" : "Zachary Ruzi",
+        "email": "zacharyruiz1@gmail.com",
+        "url": "https://sterberino.github.io/"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "com.sterberino.open-behavior-trees.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cbe7cc23453f4a44ebb011022b1e3cbf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
