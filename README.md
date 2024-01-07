@@ -1,5 +1,7 @@
 # OpenBehaviorTrees
- A collection of behavior tree scripts for developing game AI.
+ A collection of behavior tree scripts for developing game AI. 
+ <br/>
+ More extensive documentation created using [DocFX](https://dotnet.github.io/docfx/) can be found [here](https://sterberino.github.io/open-behavior-trees-documentation/docs/introduction.html).
 
 ## How to Get Started
 
@@ -51,4 +53,4 @@ which will be visible in the project window and on the nodes in the Node Editor 
 - Also available is a UtilitySelector node, for implementing Utility AI/ GOAP behaviors. Children of UtilitySelector must inherit from UtilityEvaluator.
 - Scripts are contained in the OpenBehaviorTree namespace.
 - More Information about the blackboard can be found [Here](https://github.com/Sterberino/UnitySerializedDictionary)
-- Documentation will come soon
+- More detailed documentation can be found [here](https://sterberino.github.io/open-behavior-trees-documentation/docs/introduction.html)
