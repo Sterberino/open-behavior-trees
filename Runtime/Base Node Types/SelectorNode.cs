@@ -15,7 +15,6 @@ namespace OpenBehaviorTrees
                 BehaviorTreeNodeResult result = children[index].Evaluate(behaviorTree);
                 if (result == BehaviorTreeNodeResult.running)
                 {
-                    index = 0;
                     return BehaviorTreeNodeResult.running;
                 }
                 else if (result == BehaviorTreeNodeResult.success)
