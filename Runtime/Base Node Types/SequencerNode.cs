@@ -5,7 +5,7 @@ using OpenBehaviorTrees;
 
 namespace OpenBehaviorTrees {
 
-    [CreateAssetMenu(fileName = "Behavior Tree Sequencer Node", menuName = "Custom Scriptable Objects/Behavior Trees/Behavior Tree Sequencer Node")]
+
     public class SequencerNode : CompositeNode
     {
         private int index = 0;
