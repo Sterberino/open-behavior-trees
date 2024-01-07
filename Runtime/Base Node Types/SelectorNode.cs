@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace OpenBehaviorTrees
 {
-    [CreateAssetMenu(fileName = "Behavior Tree Selector Node", menuName = "Custom Scriptable Objects/Behavior Trees/Behavior Tree Selector Node")]
     public class SelectorNode : CompositeNode
     {
         private int index = 0;
