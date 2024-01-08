@@ -12,7 +12,7 @@ namespace OpenBehaviorTrees {
 
         public Blackboard blackboard;
 
-        public Coroutine currentBehavior;
+        private Coroutine currentBehavior;
         [HideInInspector]
         public bool runningBehavior;
         [HideInInspector]
