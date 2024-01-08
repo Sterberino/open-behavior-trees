@@ -58,7 +58,7 @@ namespace OpenBehaviorTrees {
             }
         }
 
-        public IEnumerator RunBehavior()
+        private IEnumerator RunBehavior()
         {
             runningBehavior = true;
             BehaviorTreeNodeResult result;
