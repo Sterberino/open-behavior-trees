@@ -30,6 +30,7 @@ namespace OpenBehaviorTrees
             m_rect = EditorGUILayout.BeginVertical("box", GUILayout.Width(windowWidth), GUILayout.MinWidth(300), GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
+
             if (nodes.Count == 0)
             {
                 EditorGUILayout.LabelField("No items Selected", GUILayout.Width(windowWidth), GUILayout.MinWidth(200));
@@ -41,6 +42,7 @@ namespace OpenBehaviorTrees
             else
             {
                 SerializedObject ob = node.GetSerializedObject();
+                ob.Update();
                 SerializedProperty property = ob.GetIterator();
 
                 EditorGUILayout.BeginHorizontal(GUILayout.Width(windowWidth), GUILayout.MinWidth(287), GUILayout.ExpandWidth(true));
@@ -68,7 +70,6 @@ namespace OpenBehaviorTrees
                     } while (property.NextVisible(false));
                 }
 
-                ob.Update();
                 if (EditorGUI.EndChangeCheck())
                 {
                     node.GetBehaviorTreeNode().OnValidate();
@@ -82,6 +83,7 @@ namespace OpenBehaviorTrees
                 EditorGUIUtility.SetIconForObject(n, tex);
 
                 GUILayout.EndHorizontal();
+                ob.ApplyModifiedProperties();
 
             }
             EditorGUILayout.EndScrollView();

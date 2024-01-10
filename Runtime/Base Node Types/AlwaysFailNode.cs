@@ -6,9 +6,9 @@ namespace OpenBehaviorTrees
 {
     public class AlwaysFailNode : DecoratorNode
     {
-        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
-            child.Evaluate(behaviorTree);
+            child.Tick(behaviorTree);
             return BehaviorTreeNodeResult.failure;
         }
 

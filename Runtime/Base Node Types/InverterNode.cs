@@ -6,9 +6,9 @@ namespace OpenBehaviorTrees {
     public class InverterNode : DecoratorNode
     {
         //If child result is running, return running, otherwise, return opposite result of child.
-        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
-            BehaviorTreeNodeResult result = child.Evaluate(behaviorTree);
+            BehaviorTreeNodeResult result = child.Tick(behaviorTree);
 
             switch (result)
             {

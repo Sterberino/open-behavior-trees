@@ -10,7 +10,7 @@ namespace OpenBehaviorTrees
         [Tooltip("The selected Utility Evaluator will be chosen from the top X results, where X is 'chooseFromTopResults'.")]
         public int chooseFromTopResults;
 
-        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
             //Map each utility evaluator to its score
             Dictionary<UtilityEvaluator, float> utilityScoresMap = new Dictionary<UtilityEvaluator, float>();
@@ -26,13 +26,13 @@ namespace OpenBehaviorTrees
             //Select the top result or randomly from the top X results.
             if(chooseFromTopResults == 0)
             {
-                return keyValuePairs[0].Key.Evaluate(behaviorTree);
+                return keyValuePairs[0].Key.Tick(behaviorTree);
             }
             else
             {
                 //Make sure to not choose an index that is out of range.
                 int randomChoice = Random.Range(0, Mathf.Min(keyValuePairs.Count, chooseFromTopResults + 1));
-                return keyValuePairs[randomChoice].Key.Evaluate(behaviorTree);
+                return keyValuePairs[randomChoice].Key.Tick(behaviorTree);
             }
         }
 

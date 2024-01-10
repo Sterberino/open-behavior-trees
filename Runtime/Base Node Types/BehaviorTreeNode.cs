@@ -3,17 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using OpenBehaviorTrees;
+using UnityEngine.Events;
 
 namespace OpenBehaviorTrees
 {
     public enum BehaviorTreeNodeResult { running, success, failure }
 
+    public class BehaviorNodeEvent : UnityEvent<BehaviorTreeNode> { };
+
     public abstract class BehaviorTreeNode : ScriptableObject
     {
-        public virtual BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        [HideInInspector]
+        public BehaviorTreeNodeResult lastStatus = BehaviorTreeNodeResult.success;
+        [HideInInspector]
+        public BehaviorNodeEvent onTick;
+        
+        private bool m_init = false;
+        private bool m_started = false;
+
+        /// <summary>
+        /// Called when the behavior tree ticks. Wraps the Evaluate method and caches the result. 
+        /// Calls OnInit() and OnStart() on the first tick if they are defined.
+        /// </summary>
+        public BehaviorTreeNodeResult Tick(BehaviorTree behaviorTree)
         {
-            return BehaviorTreeNodeResult.success;
+            if(!m_init)
+            {
+                Init(behaviorTree);
+            }
+            if(!m_started)
+            {
+                NodeStart(behaviorTree);
+            }
+
+            lastStatus = Evaluate(behaviorTree);
+            onTick?.Invoke(this);
+
+            return lastStatus;
         }
+
+        private void Init(BehaviorTree behaviorTree)
+        {
+            OnInit(behaviorTree);
+            m_init = true;
+        }
+
+        private void NodeStart(BehaviorTree behaviorTree)
+        {
+            OnStart(behaviorTree);
+            m_started = true;
+        }
+
+        /// <summary>
+        /// Called on the first node tick, before OnStart.
+        /// </summary>
+        protected virtual void OnInit(BehaviorTree behaviorTree){}
+
+        /// <summary>
+        /// Called on the first node tick, after OnInit.
+        /// </summary>
+        protected virtual void OnStart(BehaviorTree behaviorTree) { }
+
+        protected abstract BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree);
+
         public abstract BehaviorTreeNode Clone();
 
         /// <summary>
@@ -45,8 +97,6 @@ namespace OpenBehaviorTrees
             return children;
         }
 
-        public virtual void OnValidate()
-        {
-        }
+        public virtual void OnValidate(){}
     }
 }

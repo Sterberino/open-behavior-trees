@@ -8,23 +8,21 @@ namespace OpenBehaviorTrees
     {
         private int index = 0;
 
-        public override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
+        protected override BehaviorTreeNodeResult Evaluate(BehaviorTree behaviorTree)
         {
             while (index < children.Count)
             {
-                BehaviorTreeNodeResult result = children[index].Evaluate(behaviorTree);
-                if (result == BehaviorTreeNodeResult.running)
+                BehaviorTreeNodeResult result = children[index].Tick(behaviorTree);
+                switch (result)
                 {
-                    return BehaviorTreeNodeResult.running;
-                }
-                else if (result == BehaviorTreeNodeResult.success)
-                {
-                    index = 0;
-                    return BehaviorTreeNodeResult.success;
-                }
-                else
-                {
-                    index++;
+                    case BehaviorTreeNodeResult.running:
+                        return BehaviorTreeNodeResult.running;
+                    case BehaviorTreeNodeResult.success:
+                        index = 0;
+                        return BehaviorTreeNodeResult.success;
+                    case BehaviorTreeNodeResult.failure:
+                        index++;
+                        break;
                 }
             }
             index = 0;
